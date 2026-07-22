@@ -36,7 +36,7 @@ export function PetWindow() {
     playInteractionSound(volume, muted);
     setAction((current) => {
       const currentIndex = clickActions.indexOf(current);
-      return clickActions[(currentIndex + 1) % clickActions.length];
+      return clickActions[(currentIndex + 1) % clickActions.length] ?? 'idle';
     });
     setReacting(false);
     requestAnimationFrame(() => setReacting(true));
