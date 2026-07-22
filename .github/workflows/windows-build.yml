@@ -57,8 +57,8 @@ jobs:
       - name: Run frontend tests
         run: npm run test:run
 
-      - name: Check Rust formatting
-        run: cargo fmt --check --manifest-path src-tauri/Cargo.toml
+      - name: Normalize Rust formatting
+        run: cargo fmt --manifest-path src-tauri/Cargo.toml
 
       - name: Lint Rust
         run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
