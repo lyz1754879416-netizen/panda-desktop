@@ -14,7 +14,10 @@ export const desktop = {
     if (isTauri()) await getCurrentWindow().hide();
   },
   async quit() {
-    if (isTauri()) await invoke('quit_app');
+    if (isTauri()) {
+      await getCurrentWindow().hide();
+      await invoke('quit_app');
+    }
   },
   async setAlwaysOnTop(enabled: boolean) {
     if (isTauri()) await getCurrentWindow().setAlwaysOnTop(enabled);

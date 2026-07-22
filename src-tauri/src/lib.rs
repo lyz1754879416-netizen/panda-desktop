@@ -13,9 +13,8 @@ fn show_panel(app: AppHandle, tab: String) -> Result<(), String> {
         return Ok(());
     }
 
-    let safe_tab = if tab == "settings" { "settings" } else { "profile" };
-    let url = format!("index.html?view=panel&tab={safe_tab}");
-    WebviewWindowBuilder::new(&app, "panel", WebviewUrl::App(url.into()))
+    let _safe_tab = if tab == "settings" { "settings" } else { "profile" };
+    WebviewWindowBuilder::new(&app, "panel", WebviewUrl::App("index.html".into()))
         .title("Panda Island · 花花的小岛")
         .inner_size(520.0, 680.0)
         .min_inner_size(440.0, 560.0)
@@ -27,6 +26,9 @@ fn show_panel(app: AppHandle, tab: String) -> Result<(), String> {
 
 #[tauri::command]
 fn quit_app(app: AppHandle) {
+    if let Some(window) = app.get_webview_window("pet") {
+        let _ = window.hide();
+    }
     app.exit(0);
 }
 

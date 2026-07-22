@@ -31,11 +31,10 @@ button {
 }
 .pet-hit-area {
   position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 12px;
-  width: 324px;
-  height: 324px;
+  left: 20px;
+  bottom: 8px;
+  width: 220px;
+  height: 220px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -59,10 +58,10 @@ button {
 }
 .pet-shadow {
   position: absolute;
-  left: 62px;
-  right: 62px;
-  bottom: 15px;
-  height: 25px;
+  left: 42px;
+  right: 42px;
+  bottom: 8px;
+  height: 18px;
   border-radius: 50%;
   background: #1b241d35;
   filter: blur(5px);
@@ -85,8 +84,8 @@ button {
 }
 .pet-menu {
   position: absolute;
-  right: 16px;
-  bottom: 40px;
+  right: 8px;
+  bottom: 8px;
   z-index: 9;
   display: flex;
   width: 174px;
@@ -97,6 +96,9 @@ button {
   background: #fffdf8;
   box-shadow: 0 12px 30px #26362f2c;
   backdrop-filter: blur(12px);
+}
+.pet-hit-area.action-walk img {
+  animation: walking 0.28s ease-in-out infinite alternate;
 }
 .pet-menu button {
   padding: 9px 11px;
@@ -137,6 +139,14 @@ button {
   to {
     opacity: 0;
     transform: translateY(-45px) scale(1.15);
+  }
+}
+@keyframes walking {
+  from {
+    transform: translate3d(-2px, 1px, 0) rotate(-1deg);
+  }
+  to {
+    transform: translate3d(2px, -3px, 0) rotate(1deg);
   }
 }
 .panel-shell {

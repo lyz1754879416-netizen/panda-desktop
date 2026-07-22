@@ -1,5 +1,8 @@
 import { useRef, useState } from 'react';
-import pandaImage from '../../assets/pandas/panda_huahua_mvp/idle.png';
+import eatImage from '../../assets/pandas/panda_huahua_mvp/eat.png';
+import idleImage from '../../assets/pandas/panda_huahua_mvp/idle-v2.png';
+import sleepImage from '../../assets/pandas/panda_huahua_mvp/sleep.png';
+import walkImage from '../../assets/pandas/panda_huahua_mvp/walk.png';
 import { desktop } from '../../services/tauri';
 import { useSettings } from '../../store/settings';
 import { playInteractionSound } from './sound';
@@ -9,9 +12,21 @@ interface Point {
   y: number;
 }
 
+type PandaAction = 'idle' | 'sleep' | 'eat' | 'walk';
+
+const actionImages: Record<PandaAction, string> = {
+  idle: idleImage,
+  sleep: sleepImage,
+  eat: eatImage,
+  walk: walkImage,
+};
+
+const clickActions: PandaAction[] = ['idle', 'sleep', 'eat'];
+
 export function PetWindow() {
   const [reacting, setReacting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [action, setAction] = useState<PandaAction>('idle');
   const pointerStart = useRef<Point | null>(null);
   const dragged = useRef(false);
   const clickTimer = useRef<number | null>(null);
@@ -19,6 +34,10 @@ export function PetWindow() {
 
   const react = () => {
     playInteractionSound(volume, muted);
+    setAction((current) => {
+      const currentIndex = clickActions.indexOf(current);
+      return clickActions[(currentIndex + 1) % clickActions.length];
+    });
     setReacting(false);
     requestAnimationFrame(() => setReacting(true));
     window.setTimeout(() => setReacting(false), 700);
@@ -45,7 +64,14 @@ export function PetWindow() {
       Math.abs(event.screenY - pointerStart.current.y);
     if (distance > 6) {
       dragged.current = true;
-      await desktop.startDragging();
+      setMenuOpen(false);
+      setAction('walk');
+      try {
+        await desktop.startDragging();
+      } finally {
+        setAction('idle');
+        pointerStart.current = null;
+      }
     }
   };
 
@@ -73,8 +99,8 @@ export function PetWindow() {
       }}
     >
       <button
-        aria-label="桌面熊猫花花，单击互动，双击查看资料"
-        className={`pet-hit-area ${reacting ? 'is-reacting' : ''} ${animationEnabled ? 'is-breathing' : ''}`}
+        aria-label={`桌面熊猫花花，当前动作：${action}`}
+        className={`pet-hit-area action-${action} ${reacting ? 'is-reacting' : ''} ${animationEnabled && action === 'idle' ? 'is-breathing' : ''}`}
         onPointerDown={onPointerDown}
         onPointerMove={(event) => void onPointerMove(event)}
         onPointerUp={onPointerUp}
@@ -86,7 +112,7 @@ export function PetWindow() {
           setMenuOpen(true);
         }}
       >
-        <img src={pandaImage} alt="" draggable={false} />
+        <img src={actionImages[action]} alt="" draggable={false} />
         <span className="pet-shadow" />
       </button>
 
