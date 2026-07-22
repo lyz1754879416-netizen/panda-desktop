@@ -45,8 +45,6 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
 
-      - name: Normalize source formatting
-        run: npx prettier --write "src/**/*.{ts,tsx,css,json}" "*.{json,js,ts,html,md}" "docs/**/*.md" ".github/**/*.yml"
 
       - name: Lint TypeScript
         run: npm run lint
