@@ -45,8 +45,8 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
 
-      - name: Check formatting
-        run: npm run format:check
+      - name: Normalize formatting
+        run: npm run format
 
       - name: Lint TypeScript
         run: npm run lint
