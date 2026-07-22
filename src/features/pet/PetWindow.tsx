@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import eatImage from '../../assets/pandas/panda_huahua_mvp/eat.png';
-import idleImage from '../../assets/pandas/panda_huahua_mvp/idle-v2.png';
-import sleepImage from '../../assets/pandas/panda_huahua_mvp/sleep.png';
-import walkImage from '../../assets/pandas/panda_huahua_mvp/walk.png';
+import eatImage from '../../assets/pandas/panda_huahua_mvp/eat.webp';
+import idleImage from '../../assets/pandas/panda_huahua_mvp/idle.webp';
+import sleepImage from '../../assets/pandas/panda_huahua_mvp/sleep.webp';
+import walkImage from '../../assets/pandas/panda_huahua_mvp/walk.webp';
 import { desktop } from '../../services/tauri';
 import { useSettings } from '../../store/settings';
 import { playInteractionSound } from './sound';
@@ -77,6 +77,7 @@ export function PetWindow() {
 
   const onPointerUp = () => {
     pointerStart.current = null;
+    if (dragged.current) setAction('idle');
   };
 
   const onClick = (event: React.MouseEvent) => {

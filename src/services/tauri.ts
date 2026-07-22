@@ -13,6 +13,9 @@ export const desktop = {
   async hidePet() {
     if (isTauri()) await getCurrentWindow().hide();
   },
+  async closeCurrent() {
+    if (isTauri()) await getCurrentWindow().close();
+  },
   async quit() {
     if (isTauri()) {
       await getCurrentWindow().hide();

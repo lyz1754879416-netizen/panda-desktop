@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -14,6 +15,12 @@ export default defineConfig({
     target: process.env.TAURI_ENV_PLATFORM === 'windows' ? 'chrome105' : 'es2022',
     minify: process.env.TAURI_ENV_DEBUG ? false : 'esbuild',
     sourcemap: Boolean(process.env.TAURI_ENV_DEBUG),
+    rollupOptions: {
+      input: {
+        main: resolve(process.cwd(), 'index.html'),
+        panel: resolve(process.cwd(), 'panel.html'),
+      },
+    },
   },
   test: {
     environment: 'jsdom',

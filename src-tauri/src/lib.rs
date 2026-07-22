@@ -14,7 +14,7 @@ fn show_panel(app: AppHandle, tab: String) -> Result<(), String> {
     }
 
     let _safe_tab = if tab == "settings" { "settings" } else { "profile" };
-    WebviewWindowBuilder::new(&app, "panel", WebviewUrl::App("index.html".into()))
+    WebviewWindowBuilder::new(&app, "panel", WebviewUrl::App("panel.html".into()))
         .title("Panda Island · 花花的小岛")
         .inner_size(520.0, 680.0)
         .min_inner_size(440.0, 560.0)

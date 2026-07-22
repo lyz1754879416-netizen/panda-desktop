@@ -97,9 +97,6 @@ button {
   box-shadow: 0 12px 30px #26362f2c;
   backdrop-filter: blur(12px);
 }
-.pet-hit-area.action-walk img {
-  animation: walking 0.28s ease-in-out infinite alternate;
-}
 .pet-menu button {
   padding: 9px 11px;
   border: 0;
@@ -141,14 +138,6 @@ button {
     transform: translateY(-45px) scale(1.15);
   }
 }
-@keyframes walking {
-  from {
-    transform: translate3d(-2px, 1px, 0) rotate(-1deg);
-  }
-  to {
-    transform: translate3d(2px, -3px, 0) rotate(1deg);
-  }
-}
 .panel-shell {
   min-height: 100vh;
   padding: 24px;
@@ -160,6 +149,18 @@ button {
   align-items: flex-end;
   max-width: 820px;
   margin: 0 auto 18px;
+}
+.panel-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.panel-close {
+  padding: 9px 14px;
+  border: 1px solid #d9dfd6;
+  border-radius: 10px;
+  background: #fff;
+  color: #59665d;
 }
 .eyebrow {
   color: #71806c;

@@ -29,12 +29,17 @@ export function PanelWindow() {
           <span className="eyebrow">PANDA ISLAND</span>
           <h1>花花的小岛</h1>
         </div>
-        <div className="tabs" role="tablist">
-          <button className={tab === 'profile' ? 'active' : ''} onClick={() => setTab('profile')}>
-            资料
-          </button>
-          <button className={tab === 'settings' ? 'active' : ''} onClick={() => setTab('settings')}>
-            设置
+        <div className="panel-actions">
+          <div className="tabs" role="tablist">
+            <button className={tab === 'profile' ? 'active' : ''} onClick={() => setTab('profile')}>
+              资料
+            </button>
+            <button className={tab === 'settings' ? 'active' : ''} onClick={() => setTab('settings')}>
+              设置
+            </button>
+          </div>
+          <button className="panel-close" onClick={() => void desktop.closeCurrent()}>
+            关闭
           </button>
         </div>
       </header>
@@ -143,7 +148,7 @@ export function PanelWindow() {
             </span>
             <input type="checkbox" disabled />
           </label>
-          <p className="version">Panda Island Windows 测试版 · v0.1.1</p>
+          <p className="version">Panda Island Windows 测试版 · v0.1.2</p>
         </section>
       )}
     </main>
