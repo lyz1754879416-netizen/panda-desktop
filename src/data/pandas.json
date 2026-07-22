@@ -1,0 +1,16 @@
+[
+  {
+    "id": "panda_huahua_mvp",
+    "name": "花花",
+    "alias": "花花测试原型",
+    "birthday": "测试资料",
+    "gender": "雌性角色",
+    "birthplace": "测试资料，不对应真实地点",
+    "currentLocation": "Panda Island 测试岛",
+    "father": "暂未设置",
+    "mother": "暂未设置",
+    "tags": ["温和", "从容", "爱吃竹子"],
+    "biography": "花花是 Panda Island Windows 测试版中的第一只桌面熊猫。她有圆润的脸庞、短短的四肢和慢悠悠的性格，喜欢安静地陪伴你工作，也喜欢在休息时吃竹子。",
+    "disclaimer": "这是原创卡通测试角色，参考真实大熊猫的公开体态特征进行再设计，并非任何动物园或机构的官方数字形象。"
+  }
+]
