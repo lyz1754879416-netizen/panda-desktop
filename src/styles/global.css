@@ -39,6 +39,8 @@ button {
   padding: 0;
   border: 0;
   background: transparent;
+  opacity: 1;
+  isolation: isolate;
   transform-origin: 50% 100%;
 }
 .pet-hit-area img {
@@ -48,6 +50,10 @@ button {
   height: 100%;
   object-fit: contain;
   pointer-events: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   filter: drop-shadow(0 6px 7px #24372a35);
   z-index: 2;
 }
@@ -88,7 +94,7 @@ button {
   flex-direction: column;
   border: 1px solid #dbe3dc;
   border-radius: 14px;
-  background: #fffdf8f5;
+  background: #fffdf8;
   box-shadow: 0 12px 30px #26362f2c;
   backdrop-filter: blur(12px);
 }
