@@ -25,7 +25,14 @@ export function PetWindow() {
   };
 
   const onPointerDown = (event: React.PointerEvent) => {
+    if (event.button === 2) {
+      event.preventDefault();
+      event.stopPropagation();
+      setMenuOpen(true);
+      return;
+    }
     if (event.button !== 0) return;
+    setMenuOpen(false);
     pointerStart.current = { x: event.screenX, y: event.screenY };
     dragged.current = false;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -58,7 +65,13 @@ export function PetWindow() {
   };
 
   return (
-    <main className="pet-shell" onPointerDown={() => setMenuOpen(false)}>
+    <main
+      className="pet-shell"
+      onContextMenu={(event) => event.preventDefault()}
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) setMenuOpen(false);
+      }}
+    >
       <button
         aria-label="桌面熊猫花花，单击互动，双击查看资料"
         className={`pet-hit-area ${reacting ? 'is-reacting' : ''} ${animationEnabled ? 'is-breathing' : ''}`}
@@ -87,6 +100,7 @@ export function PetWindow() {
         <nav
           className="pet-menu"
           aria-label="桌宠菜单"
+          onContextMenu={(event) => event.preventDefault()}
           onPointerDown={(event) => event.stopPropagation()}
         >
           <button onClick={() => void desktop.openPanel('profile')}>查看资料</button>
