@@ -1,4 +1,5 @@
 import { invoke } from '@tauri-apps/api/core';
+import { LogicalSize } from '@tauri-apps/api/dpi';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
 const isTauri = () => '__TAURI_INTERNALS__' in window;
@@ -24,5 +25,8 @@ export const desktop = {
   },
   async setAlwaysOnTop(enabled: boolean) {
     if (isTauri()) await getCurrentWindow().setAlwaysOnTop(enabled);
+  },
+  async setPetSize(size: number) {
+    if (isTauri()) await getCurrentWindow().setSize(new LogicalSize(size, size));
   },
 };

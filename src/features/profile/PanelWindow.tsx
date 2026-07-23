@@ -148,7 +148,7 @@ export function PanelWindow() {
             </span>
             <input type="checkbox" disabled />
           </label>
-          <p className="version">Panda Island Windows 测试版 · v0.1.2</p>
+          <p className="version">Panda Island Windows 测试版 · v0.2.0</p>
         </section>
       )}
     </main>
